@@ -1,0 +1,746 @@
+{
+	"compiler": {
+		"version": "0.6.12+commit.27d51765"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "contract LqdrToken",
+						"name": "_lqdr",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_devaddr",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_feeAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lqdrPerBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startBlock",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "pid",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposit",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "pid",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "EmergencyWithdraw",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newAddress",
+						"type": "address"
+					}
+				],
+				"name": "SetDevAddress",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newAddress",
+						"type": "address"
+					}
+				],
+				"name": "SetFeeAddress",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "lqdrPerBlock",
+						"type": "uint256"
+					}
+				],
+				"name": "UpdateEmissionRate",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "pid",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdraw",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "BONUS_MULTIPLIER",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_allocPoint",
+						"type": "uint256"
+					},
+					{
+						"internalType": "contract IBEP20",
+						"name": "_lpToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint16",
+						"name": "_depositFeeBP",
+						"type": "uint16"
+					},
+					{
+						"internalType": "bool",
+						"name": "_withUpdate",
+						"type": "bool"
+					}
+				],
+				"name": "add",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_pid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "deposit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_devaddr",
+						"type": "address"
+					}
+				],
+				"name": "dev",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "devaddr",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_pid",
+						"type": "uint256"
+					}
+				],
+				"name": "emergencyWithdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "feeAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_from",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_to",
+						"type": "uint256"
+					}
+				],
+				"name": "getMultiplier",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lqdr",
+				"outputs": [
+					{
+						"internalType": "contract LqdrToken",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lqdrPerBlock",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "massUpdatePools",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_pid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "pendingLqdr",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IBEP20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "poolExistence",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "poolInfo",
+				"outputs": [
+					{
+						"internalType": "contract IBEP20",
+						"name": "lpToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "allocPoint",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lastRewardBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "accLqdrPerShare",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint16",
+						"name": "depositFeeBP",
+						"type": "uint16"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "poolLength",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_pid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_allocPoint",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint16",
+						"name": "_depositFeeBP",
+						"type": "uint16"
+					},
+					{
+						"internalType": "bool",
+						"name": "_withUpdate",
+						"type": "bool"
+					}
+				],
+				"name": "set",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_feeAddress",
+						"type": "address"
+					}
+				],
+				"name": "setFeeAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "startBlock",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalAllocPoint",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lqdrPerBlock",
+						"type": "uint256"
+					}
+				],
+				"name": "updateEmissionRate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_pid",
+						"type": "uint256"
+					}
+				],
+				"name": "updatePool",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "userInfo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rewardDebt",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_pid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"MasterChefV2.sol": "MasterChefV2"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"LqdrToken.sol": {
+			"keccak256": "0xe6e9c5113a4f857387160a942a691eef4cf3e8f7420473e2254b48f41ac944bc",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://e990a87c812c98f77418a89cff15b84c0d29558cca190b160b6f5d90d5da1d1d",
+				"dweb:/ipfs/QmNtyGSSdJesuq9RhNvdD6H2stkiZ34sJVJ7vzjMBSC3bY"
+			]
+		},
+		"MasterChefV2.sol": {
+			"keccak256": "0xf158229f0bedd0fcd98116858823beddd2d5441cdcdaaea0bc0e8a54d2c74f84",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6f128a6f4cb0e0d857880f84a15a4dde429d06b96a63c7a44cc172cd38355936",
+				"dweb:/ipfs/QmWxTkvbwcZBj7prgws1WWJQXdeGjLgrXAcvdvFqyVpvQC"
+			]
+		},
+		"depends/Address.sol": {
+			"keccak256": "0xf6ef080fad8534f258b526768063c666e701b135ec3bde9bdffc77254e399515",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://043eada9acabd207d4aaa1706ca581c514ba75e8ec9183a805ff8d1f25ccd445",
+				"dweb:/ipfs/QmU6fLUSyR7YSMVtcGtj5epEvpxDBERGMS5L92WG7JKQVH"
+			]
+		},
+		"depends/BEP20.sol": {
+			"keccak256": "0x32de1b8e2078350d969707c98c148612f1fb6a95ecdf80f1fbe09c64cec3bc0a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f3298f702a3b4f5751ec66268735a18b5c5e59588d2fb214015a67594a4c466e",
+				"dweb:/ipfs/QmcBA7vrQZ2idyFssZ67wXNP7qsyD15YbsrkoUvndqi2mg"
+			]
+		},
+		"depends/Context.sol": {
+			"keccak256": "0x052d452c5c69110b867e91ea1a6a71cc2e82513a129f3e1040ce3d57e36789b0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://28c6fb9ff76661287a087f5d7e7572285e71a0d6a9308063d9dda17a2ee891cd",
+				"dweb:/ipfs/QmU9xa1VaLpQxjvqAfVySgUgTP4G4f6YLa8Gj7ASF7shKT"
+			]
+		},
+		"depends/IBEP20.sol": {
+			"keccak256": "0x08d52eb96197b3da4c80d697e152fd162cfeaa66bafb14d4d4c749e60ca03ae5",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://cf8df00576c6b2a15aeb3ac34182978e4b2493d46a84585cdd1819ddcae2365d",
+				"dweb:/ipfs/QmZeZTK4Y4pHc3wFns88zX48y6Byv7EEu4EwsSdxJTZCnT"
+			]
+		},
+		"depends/Ownable.sol": {
+			"keccak256": "0xf323ab505393a0e9cf0f2c5ada6113eefc94f24174b3794159eb8b2466a4196a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6c04aba6650fa29c9bbcd8e37116c5bbdfdb1679832c7ada868d133fd7f212b3",
+				"dweb:/ipfs/QmSWArccbnuS3HbQAAoMG1pUR3nnJMdWmdgGBnpp4vVYCh"
+			]
+		},
+		"depends/ReentrancyGuard.sol": {
+			"keccak256": "0x2472e6a574f51c6c55dcd690cdeffefa3e6603f6641236e98551747de3e09ac2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://dba429c4958aca4512995a0387e33a64693aa47bd5addfaf2036128ef62f3f9b",
+				"dweb:/ipfs/Qmduj4V1bNgQxpjpqJjzH9zK2b87WpPYZKWKHN532ZpsXY"
+			]
+		},
+		"depends/SafeBEP20.sol": {
+			"keccak256": "0x75ad3880f970e9d4f3651ced76b33c17094cb5a7703c90c28b4858f3b42e8102",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e8a9085b72dfd3907d1673d4943d169591f64bb8d240a2d65edfdb887ac3c617",
+				"dweb:/ipfs/Qmcc1fSa5cMgkjZubFBuLmDB8rtHk3sS7K1LhCg2CipkGk"
+			]
+		},
+		"depends/SafeMath.sol": {
+			"keccak256": "0x97682ed5efd84502e1c7476cd0890e5e2b37c0a9d0370c94d98166ac75542388",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1de2f3bf01a1e5f59e65c43642adc759d9bba3c1e2ed6f992446458fe43d2e0e",
+				"dweb:/ipfs/QmaENw1QUixhLkxG1TYWd278pcu4oYAiGdRnCUZ3ERHqem"
+			]
+		}
+	},
+	"version": 1
+}
